@@ -1,0 +1,57 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 11/08/2022
+// Design Name: 
+// Module Name: counter6_2_1
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module counter6_2_1(
+    input clk, 
+    input clear_n, 
+    input Enable, 
+    output [7:0] Q
+    );
+    
+    wire [6:0] T;
+    
+    tflipflop T7 (.clk(clk), .clear_n(clear_n), .T(Enable), .Q(Q[7]));
+        assign T[6] = Q[7] & Enable;
+        
+    tflipflop T6 (.clk(clk), .clear_n(clear_n), .T(T[6]), .Q(Q[6]));
+        assign T[5] = Q[6] & T[6];
+            
+    tflipflop T5 (.clk(clk), .clear_n(clear_n), .T(T[5]), .Q(Q[5]));
+        assign T[4] = Q[5] & T[5];
+    
+    tflipflop T4 (.clk(clk), .clear_n(clear_n), .T(T[4]), .Q(Q[4]));
+        assign T[3] = Q[4] & T[4];
+                                    
+    tflipflop T3 (.clk(clk), .clear_n(clear_n), .T(T[3]), .Q(Q[3]));
+        assign T[2] = Q[3] & T[3];
+
+    tflipflop T2 (.clk(clk), .clear_n(clear_n), .T(T[2]), .Q(Q[2]));
+        assign T[1] = Q[2] & T[2];
+                                    
+    tflipflop T1 (.clk(clk), .clear_n(clear_n), .T(T[1]), .Q(Q[1]));
+        assign T[0] = Q[1] & T[1];
+        
+    tflipflop T0 (.clk(clk), .clear_n(clear_n), .T(T[0]), .Q(Q[0]));
+        
+    
+               
+endmodule
