@@ -1,0 +1,35 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 11/06/2021 10:15:19 AM
+// Design Name: 
+// Module Name: lab6_1_33
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module lab6_1_33(
+    input clk,
+    input ShiftIn, 
+    output ShiftOut
+    );
+    
+    reg [2:0] shift_reg;
+    
+    always @(posedge clk)
+        shift_reg <= {shift_reg[1:0], ShiftIn};
+    assign ShiftOut = shift_reg[2];
+    
+endmodule
